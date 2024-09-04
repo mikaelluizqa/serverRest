@@ -1,0 +1,29 @@
+Feature: CRUD de Usuários
+
+  Scenario: Cadastro de um novo usuário
+    Dado que eu quero cadastrar um usuário com informações válidas
+    Quando eu envio uma requisição POST para criar o usuário
+    Então a resposta deve ter status 201
+    E a resposta deve conter a mensagem "Cadastro realizado com sucesso"
+    E o campo _id não deve ser nulo
+
+  Scenario: Recuperar o usuário criado
+    Dado que eu tenho o _id do usuário que foi cadastrado
+    Quando eu envio uma requisição GET para recuperar os detalhes do usuário
+    Então a resposta deve ter status 200
+    E o campo administrador deve ser "true"
+    E o campo password deve ser "teste"
+    E o campo nome deve ser "Fulano da Silva"
+    E o campo email deve conter "@" e não deve ser nulo
+
+  Scenario: Atualizar o usuário
+    Dado que eu quero atualizar o usuário com um novo conjunto de informações
+    Quando eu envio uma requisição PUT para atualizar o usuário existente
+    Então a resposta deve ter status 200
+    E a resposta deve conter a mensagem "Registro alterado com sucesso"
+
+  Scenario: Excluir o usuário
+    Dado que eu tenho o _id do usuário que quero excluir
+    Quando eu envio uma requisição DELETE para remover o usuário
+    Então a resposta deve ter status 200
+    E a resposta deve conter a mensagem "Registro excluído com sucesso"
